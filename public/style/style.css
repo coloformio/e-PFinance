@@ -1,0 +1,44 @@
+/*STILE NAVBAR e ELEMENTI INTERNI*/
+.navBarBorder{
+    opacity: 1;
+    border-bottom: 3px solid black;
+}
+.linkForNav:hover{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* MAIN SECTION */
+#presentProduct{
+    width: 100%;
+    height: 100%;
+    padding-top: 13%;
+    padding-bottom: 13%;
+}
+
+#whyEPFinance{
+    background-color: #ededed;
+    padding-top: 16%;
+    padding-bottom: 16%;
+}
+
+#recensioniSection{
+    padding-top: 15%;
+    padding-bottom: 15%;
+}
+
+#contactAncor{
+    background-color: #ededed;
+}
+
+.separator{
+    border-bottom: 1px solid black;
+}
+
+/*BACKTOPBTN*/
+.backTopBtn{
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 100%;
+}
