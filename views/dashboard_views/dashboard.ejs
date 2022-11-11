@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+
+        <!-- SIDEBAR NAV STARTS -->
+
+        <%- include('../partials/dashboard_sidebar'); %>
+
+        <!-- SIDEBAR NAV ENDS -->
+
+        <div class="col d-flex justify-content-center align-items-center">
+            <div class="col-12 col-sm-6 d-flex flex-column text-center">
+                <div>
+                    <h1>Ciao <%= name %> <%= surname %></h1>
+                </div>
+                <div class="my-sm-1 my-md-3 my-lg-5 my-5">
+                    <h2>Il tuo bilancio e' di:</h2>
+                    <!-- EJS PARTIALS -->
+                    <%- include('../partials/data'); %>
+                </div>
+
+                <div class="mb-3">
+                    <h5>Seleziona il grafico da mostrare per primo e premi conferma:</h5>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="chart" id="trendChart" value="trendChart">
+                        <label class="form-check-label" for="trendChart">
+                        Grafico bilancio
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="chart" id="categoryExpenses"     value="categoryExpenses">
+                        <label class="form-check-label" for="categoryExpenses">
+                            Grafico spese
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-outline-primary mb-2" onclick="setChartPreference()">Conferma</button>
+
+                <div class="card mt-sm-1 mt-md-3 mt-lg-5 mt-xl-5">
+                    <div class="card-header py-3">
+                        <h5 class="text-decoration-underline">Breve Tutorial</h5>
+                    </div>
+                    <div class="card-body mt-2">
+                        <p>In questa schermata <a class="text-decoration-none" href="/dashboard">"Homepage"</a> e'possibile visualizzare in maniera immediata lo stato del bilancio.</p>
+                        <p>Nella pagina "Aggiungi" e' possibile inserire ingressi <a class="text-decoration-none" href="/dashboard/insertIn">"In"</a> e spese <a class="text-decoration-none" href="/dashboard/insertOut">"Out"</a></p>
+                        <p>Nella pagina <a class="text-decoration-none" href="/dashboard/news">"News"</a> e' possibile ottenere una lista di articoli relativi a una keyword inserita.</p>
+                        <p>Nella pagina <a class="text-decoration-none" href="/dashboard/summary">"Riepilogo"</a> e' possibile visualizzare un resoconto dettagliato delle proprie finanze</p>
+                    </div>  
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>
+
+<script src="/js/setChartPreference.js"></script>
+<script>
+
+    window.onload = (e) => {
+        var preferredChart = window.localStorage.getItem('chart');
+        if(preferredChart == 'trendChart'){
+            var trendRadio = document.getElementById('trendChart');
+            trendRadio.checked = true;
+        } else {
+            var categoryExpenses = document.getElementById('categoryExpenses');
+            categoryExpenses.checked = true;
+        }
+    }
+
+</script>
