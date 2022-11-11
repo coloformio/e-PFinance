@@ -1,0 +1,131 @@
+<%# Gestione ultimi inserimenti %>
+<%# Passato dato come stringa, per cui ritrasformo in JSON Object %>
+<%# Caso in cui non e' stato inserito ancora nulla %>
+<% op = JSON.parse(data); %>
+<% if(op.length == 0) { %>
+    <li class="list-group-item">
+        <div class="container d-flex justify-content-center flex-wrap">
+            <h5> Nessuna operazione registrata</h5>
+        </div>
+    </li>
+<% } %>
+
+<% for(i = 0; i < op.length; i++) { %>
+    <li class="list-group-item">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <%# In base al tipo di operazione cambio colore del testo %>
+                <% const dateOp = new Date(op[i].dateOp) %>
+                <% if(op[i].type == 'in') { %>
+                <div class="col col-sm-2 text-start">
+                    <h6 class="text-success fw-bold"> +<%= op[i].amount %>€</h6>
+                </div>
+                <div class="col col-sm-3 text-start">
+                    <h6 class="fw-normal"> <%= op[i].title %></h6>
+                </div>
+                <div class="col col-sm-3 text-start">
+                    <h6 class="fw-normal"> <%= dateOp.getDate() %>/<%= dateOp.getMonth()+ 1 %>/<%= dateOp.getFullYear() %> </h6>
+                </div>
+                <div class="col pb-2">
+                    <form action="/api/user/deleteTransaction/<%- op[i]._id %>" method="post">
+                        <button type="submit" class="btn btn-sm btn-outline-primary mt-2">
+                            Elimina
+                        </button>
+                    </form> 
+                </div>
+                <div class="col pb-2">
+                        <button class="btn btn-sm btn-outline-primary mt-2" onclick="toggleCompleteForm()">
+                            Modifica
+                        </button>
+                </div>
+                <% } %>
+                <% if(op[i].type == 'out') { %>
+                    <div class="col col-sm-2 text-start">
+                        <h6 class="text-danger fw-bold"> -<%= op[i].amount %>€</h6>
+                    </div>
+                    <div class="col col-sm-3 text-start">
+                        <h6 class="fw-normal"> <%= op[i].title %></h6>
+                    </div>
+                    <div class="col col-sm-3 text-start">
+                        <h6 class="fw-normal"> <%= dateOp.getDate() %>/<%= dateOp.getMonth()+ 1 %>/<%= dateOp.getFullYear() %> </h6>
+                    </div>
+                    <div class="col pb-2">
+                        <form action="/api/user/deleteTransaction/<%- op[i]._id %>" method="post" id="deleteForm">
+                            <button type="submit" class="btn btn-sm btn-outline-primary mt-2">
+                                Elimina
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col pb-2">
+                        <button class="btn btn-sm btn-outline-primary mt-2" onclick="toggleCompleteForm()">
+                            Modifica
+                        </button>
+                    </div>
+                <% } %>
+            </div>
+            <!-- FORM PER MODIFICA CHE APPARE SOLO SE SI CLICCA SU MODIFICA -->
+            <div class="row mt-3 pt-2 pb-2 d-none" style="border: 1px solid #0275d8;" id="updateDiv">
+                <div class="col-12">
+                    <form action="/api/user/updateTransaction/<%- op[i]._id %>" method="POSid="updateForm">
+                        <div class="row">
+                            <div class="col mt-1">
+                                <input 
+                                    type="text"
+                                    id="title"
+                                    name="title"
+                                    class="form-control"
+                                    placeholder="Titolo"
+                                    value = "<% typeof title != 'undefined' ? title: ''%>"
+                                >
+                            </div>
+                            <div class="col mt-1">
+                                <input 
+                                    type="number"
+                                    id="amount"
+                                    name="amount"
+                                    class="form-control"
+                                    placeholder="Importo"
+                                    value = "<% typeof amount != 'undefined' ? amount: ''%>"
+                                    >
+                            </div>
+                            <div class="col mt-1">
+                                <input 
+                                    type="date"
+                                    id="date"
+                                    name="date"
+                                    class="form-control"
+                                    >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col pt-2">
+                                <button type="submit" class="btn btn-outline-primary">
+                                    Conferma
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <% if(op[i].description != '' || op[i].description) { %>
+            <div class="row mt-3">
+                <div class="col-12 text-start">
+                    <p> <%= op[i].description %></p>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </li>
+<% } %>
+
+<script>
+    function toggleCompleteForm() {
+
+        var updateForm = document.getElementById('updateDiv');
+        if(updateForm.classList.contains('d-none')){
+            updateForm.classList.remove('d-none');
+        } else {
+            updateForm.classList.add('d-none');
+        }
+    }
+</script>
