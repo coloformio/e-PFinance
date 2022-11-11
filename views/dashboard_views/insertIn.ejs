@@ -1,0 +1,87 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+
+        <!-- SIDEBAR NAV STARTS -->
+
+        <%- include('../partials/dashboard_sidebar'); %>
+
+        <!-- SIDEBAR NAV ENDS -->
+
+        <!-- MAIN SECTION STARTS -->
+
+        <div class="col d-flex flex-column justify-content-center align-items-center">
+            <div class="col-12 col-md-10 col-xl-8">
+                <div class="text-center">
+                    <h3>Inserimento Entrate</h5>
+                    <p>Compilando i seguenti campi e' possibile inserire le entrate</p>
+                </div>
+
+                <!-- EJS PARTIALS -->
+                <%- include('../partials/messages'); %>
+
+                <div class="card card-body mt-3 h-auto">
+                    <form action="/api/user/insertIn" method="POST" id="form">
+                        <div class="form-class mt-3">
+                            <label for="title">Titolo</label>
+                            <input 
+                                type="text"
+                                id="title"
+                                name="title"
+                                class="form-control"
+                                placeholder="Titolo entrata"
+                                value = "<% typeof title != 'undefined' ? title: ''%>"
+                            >
+                        </div>
+                        <div class="form-class mt-3">
+                            <label for="description">Breve descrizione</label>
+                            <textarea class="form-control"
+                                name="description" 
+                                id="description"
+                                rows="3"
+                                placeholder="Descrizione dell'entrata (opzionale)"></textarea>
+                        </div>
+                        <div class="form-class mt-3">
+                            <label for="amount">Importo</label>
+                            <input 
+                                type="number"
+                                id="amount"
+                                name="amount"
+                                class="form-control"
+                                placeholder="Importo dell'entrata"
+                                value = "<% typeof amount != 'undefined' ? amount: ''%>"
+                                >
+                        </div>
+                        <div class="form-class mt-3">
+                            <label for="date">Data Ingresso</label>
+                            <input 
+                                type="date"
+                                id="date"
+                                name="date"
+                                class="form-control"
+                                >
+                        </div>
+                        <select name="selectedCategory" class="form-select mt-3" aria-label="category-menu">
+                            <option selected>Categoria</option>
+                            <option value="Stipendio">Stipendio</option>
+                            <option value="Prestazioni Occasionali">Prestazioni Occasionali</option>
+                            <option value="Altro">Altro</option>
+                          </select>
+
+                        <div class="d-grid gap-1 mt-3">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="bi bi-emoji-smile"></i> Aggiungi
+                            </button>
+                        </div>
+                    </form>
+                </div>                
+            </div>
+        </div>
+
+        <!-- MAIN SECTION ENDS -->
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('form');
+    form.addEventListener('sumbit', (e) => e.preventDefault());
+</script>

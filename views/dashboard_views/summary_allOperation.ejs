@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+
+        <!-- SIDEBAR NAV STARTS -->
+
+        <%- include('../partials/dashboard_sidebar'); %>
+
+        <!-- SIDEBAR NAV ENDS -->
+
+        <!-- MAIN SECTION START HERE -->
+
+        <div class="col d-flex flex-column align-items-center">
+            <div class="col-12 col-md-10 d-flex flex-column text-center mt-4">
+                
+                <div class="container d-flex justify-content-start align-items-start">
+                    <a href="/dashboard/summary" class="btn btn-outline-primary" role="buttone">
+                        Indietro
+                    </a>
+                </div>
+                
+                <!-- EJS PARTIALS -->
+                <%- include('../partials/messages'); %>
+                
+                <div class="mt-5 card card-body mb-3">
+                    <h3 class="text-center pt-2 pb-2">Elenco Movimenti</h3>
+                    <ul class="list-group list-group-flush">
+                        <!-- EJS PARTIALS -->
+                        <%- include('../partials/allOperation'); %>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN SECTION ENDS HERE -->
+
+    </div>
+</div>

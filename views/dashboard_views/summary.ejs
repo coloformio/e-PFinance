@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+
+        <!-- SIDEBAR NAV STARTS -->
+
+        <%- include('../partials/dashboard_sidebar'); %>
+
+        <!-- SIDEBAR NAV ENDS -->
+
+        <!-- MAIN SECTION STARTS -->
+
+        <div class="col d-flex flex-column align-items-center">
+            <div class="col-12 col-md-10 col-xl-8 d-flex flex-column text-center mt-4">
+                <div class="btn-group" role="group" aria-label="Graph Resume">
+                    <button id="trend" type="button" class="btn btn-outline-primary" onclick="trendChart()">Trend</button>
+                    <button id="expenses" type="button" class="btn btn-outline-primary" onclick="categoryExpenses()">Spese</button>
+                </div>
+
+                <div id="canvasDiv" class="d-none mt-5">
+                    <canvas id="chart" style="min-height: 0px; max-height: 500px;"></canvas>
+                </div>
+
+                <div class="mt-5 card card-body">
+                    <h3 class="text-center pt-2">Ultimi Movimenti</h3>
+                    <ul class="list-group list-group-flush">
+                        <!-- EJS PARTIALS -->
+                        <%- include('../partials/lastOperation'); %>
+                    </ul>
+                </div>
+                <a href="/dashboard/summary/allOperations" class="btn btn-outline-primary btn-block mt-2 mb-3" role="button">Tutti gli inserimenti</a>
+            </div>
+        </div>
+
+        <!-- MAIN SECTION ENDS -->
+    </div>
+</div>
+
+<!-- SCRIPT PART -->
+
+<script src="/js/preferredChart.js"></script>
+<script src="/js/divText.js"></script>
+<script src="/js/deleteText.js"></script>
+<script src="/js/getData.js"></script>
+<script src="/js/toggleDiv.js"></script>
+<script src="/js/deleteGraph.js"></script>
+<script src="/js/categoryExpenses.js"></script>
+<script src="/js/trendChart.js"></script>

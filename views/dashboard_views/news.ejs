@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+
+        <!-- SIDEBAR NAV STARTS -->
+
+        <%- include('../partials/dashboard_sidebar'); %>
+
+        <!-- SIDEBAR NAV ENDS -->
+
+        <!-- MAIN SECTION STARTS -->
+        <div class="col d-flex flex-column align-items-center">
+            <div class="col-12 col-sm-6 mt-3">
+                <h4>News</h4>
+                <p>Inserisci una keyword per ricevere i principali articoli correlati</p>
+
+                <form class="d-flex" role="search" id="searchForm">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchValue">
+                    <button class="btn btn-outline-success" type="submit" id="sendButton">Search</button>
+                </form>
+            </div>
+            <div class="col-12 col-sm-6 mt-3">
+                <ul class="list-group" id="resultUl">
+                </ul>
+            </div>
+        </div>
+        <!-- MAIN SECTION ENDS -->
+
+    </div>
+</div>
+
+<script>
+    const searchForm = document.querySelector('#searchForm');
+    const input = document.getElementById('searchValue');
+    const articleList = document.getElementById('resultUl');
+
+    searchForm.addEventListener('submit', retrieve);
+    
+    async function retrieve(e) {
+        
+        articleList.innerHTML = '';
+        e.preventDefault();
+        const apiKey = '76722afaf9d549f49863d8103dc69e11';
+        let topic = input.value;
+        // creo url
+        let url = `https://newsapi.org/v2/everything?q=${topic}&language=it&sortBy=publishedAt&apiKey=${apiKey}`
+        await fetch(url).then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            data.articles.forEach(article => {
+                let li = document.createElement('li');
+                li.classList.add('list-group-item');
+                let a = document.createElement('a');
+                a.setAttribute('href', article.url);
+                a.setAttribute('target', '_blank');
+                a.textContent = article.title;
+                li.appendChild(a);
+                resultUl.appendChild(li);
+            })
+        })
+    }
+</script>
