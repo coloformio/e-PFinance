@@ -59,9 +59,6 @@ app.use('/api', require('./routes/api'));
 app.use('/dashboard', require('./routes/dashboard'));
 app.use('/api/user', require('./routes/api_user'));
 
-app.get('/*', (req,res) => {
-    res.status(404).render('./main_views/nonFound');
-});
 
 // Server Setting Up
 const PORT = process.env.PORT || 5000;
