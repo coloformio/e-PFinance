@@ -1,0 +1,64 @@
+<%# Gestione ultimi inserimenti %>
+<%# Passato dato come stringa, per cui ritrasformo in JSON Object %>
+<%# Caso in cui non e' stato inserito ancora nulla %>
+<% op = JSON.parse(data); %>
+<% if(op.length == 0) { %>
+    <li class="list-group-item">
+        <div class="container d-flex justify-content-center flex-wrap">
+            <h5> Nessuna operazione registrata</h5>
+        </div>
+    </li>
+<% } %>
+
+<% if(op.length > 0) { %>
+    <% if(op.length <= 5) { %>
+        <% for(i = 0; i < op.length; i++) { %>
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between flex-wrap">
+                    <%# In base al tipo di operazione cambio colore del testo %>
+                    <% const dateOp = new Date(op[i].dateOp) %>
+                    <% if(op[i].type == 'in') { %>
+                        <h6 class="text-success"> <%= dateOp.getDate() %>/<%= dateOp.getMonth()+ 1 %>/<%= dateOp.getFullYear() %> </h6>
+                        <h6 class="text-success"> <%= op[i].title %></h6>
+                        <h6 class="text-success"> <%= op[i].amount %>€</h6>
+                    <% } %>
+                    <% if(op[i].type == 'out') { %>
+                        <h6 class="text-danger"> <%= dateOp.getDate() %>/<%= dateOp.getMonth()+1 %>/ <%= dateOp.getFullYear() %> </h6>
+                        <h6 class="text-danger"> <%= op[i].title %></h6>
+                        <h6 class="text-danger"> <%= op[i].amount %>€</h6>
+                    <% } %>
+                    <% if(op[i].description != '' || op[i].description) { %>
+                        <div class="container-fluid text-start">
+                            <p> <%= op[i].description %></p>
+                        </div>
+                    <% } %>
+                </div>
+            </li>
+        <% } %>
+    <% } %>
+    <% if(op.length > 5) { %>
+        <% for(i = 0; i < 5; i++){ %>
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between flex-wrap">
+                    <%# In base al tipo di operazione cambio colore del testo %>
+                    <% const dateOp = new Date(op[i].dateOp) %>
+                    <% if(op[i].type == 'in') { %>
+                        <h6 class="text-success"> <%= dateOp.getDate() %>/<%= dateOp.getMonth()+ 1 %>/<%= dateOp.getFullYear() %> </h6>
+                        <h6 class="text-success"> <%= op[i].title %></h6>
+                        <h6 class="text-success"> <%= op[i].amount %>€</h6>
+                    <% } %>
+                    <% if(op[i].type == 'out') { %>
+                        <h6 class="text-danger"> <%= dateOp.getDate() %>/<%= dateOp.getMonth()+1 %>/ <%= dateOp.getFullYear() %> </h6>
+                        <h6 class="text-danger"> <%= op[i].title %></h6>
+                        <h6 class="text-danger"> <%= op[i].amount %>€</h6>
+                    <% } %>
+                    <% if(op[i].description != '' || op[i].description) { %>
+                        <div class="container-fluid text-start">
+                            <p> <%= op[i].description %></p>
+                        </div>
+                    <% } %>
+                </div>
+            </li>
+        <% } %>
+    <% } %>
+<% } %>

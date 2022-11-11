@@ -1,0 +1,6 @@
+<%# Gestione valore bilancio totale %>
+<% if(balance < 0) { %>
+    <h1 class="text-danger" style="font-size: 68px;"> <%= balance %> €</h1>
+<% } else { %>
+    <h1 class="text-success" style="font-size: 68px;"> + <%= balance %> €</h1>
+<% } %>

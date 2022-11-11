@@ -1,0 +1,41 @@
+<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #ededed;">
+    <div class="d-flex flex-column align-items-center align-sm-items-start px-3 pt-2 min-vh-100 sticky-top">
+        <img src="/loghi/logo1-lgProvaTagliata.png" alt="logoApp" class="img-fluid d-none d-md-inline">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="sidebar">
+            <li class="nav-item">
+                <a href="/dashboard" class="nav-link align-middle px-0 text-black">
+                    <i class="fs-4 bi bi-house"></i> <span class="ms-1 d-none d-md-inline">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link px-0 align-middle text-black text-decoration-none" href="#insertMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="insertMenu">
+                    <i class="fs-4 bi bi-plus-square"></i> <span class="ms-1 d-none d-md-inline">Aggiungi</span>
+                </a>    
+                <ul class="collapse nav flex-column ms-1" id="insertMenu">
+                    <li class="w-100">
+                        <a href="/dashboard/insertIn" class="nav-link px-0 text-black">In</a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/insertOut" class="nav-link px-0 text-black">Out</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="/dashboard/news" class="nav-link align-middle px-0 text-black">
+                    <i class="fs-4 bi bi-newspaper"></i> <span class="ms-1 d-none d-md-inline">News</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/dashboard/summary" class="nav-link align-middle px-0 text-black">
+                    <i class="fs-4 bi bi-bar-chart"></i> <span class="ms-1 d-none d-md-inline">Riepilogo</span>
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <form action="/api/logout" method="POST">
+            <button type="submit" class="align-middle pb-5 text-black stikcy-bottom" style="border: none;">
+                <i class="fs-4 bi bi-box-arrow-left"></i> <span class="ms-1 d-none d-md-inline">LogOut</span>
+            </button>    
+        </form>
+    </div>
+</div>
