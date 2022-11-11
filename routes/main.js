@@ -13,8 +13,4 @@ router.get('/login', (req,res) => {
     res.status(200).render('./main_views/login');
 });
 
-router.get('/*', (req,res) => {
-    res.status(404).render('./main_views/nonFound');
-})
-
 module.exports = router;
