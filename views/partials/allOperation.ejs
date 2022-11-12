@@ -34,7 +34,7 @@
                     </form> 
                 </div>
                 <div class="col pb-2">
-                        <button class="btn btn-sm btn-outline-primary mt-2" onclick="toggleCompleteForm()">
+                        <button class="btn btn-sm btn-outline-primary mt-2" onclick="toggleCompleteForm('<%= i + 1 %>')">
                             Modifica
                         </button>
                 </div>
@@ -57,14 +57,14 @@
                         </form>
                     </div>
                     <div class="col pb-2">
-                        <button class="btn btn-sm btn-outline-primary mt-2" onclick="toggleCompleteForm()">
+                        <button class="btn btn-sm btn-outline-primary mt-2" onclick="toggleCompleteForm('<%= i + 1 %>')">
                             Modifica
                         </button>
                     </div>
                 <% } %>
             </div>
             <!-- FORM PER MODIFICA CHE APPARE SOLO SE SI CLICCA SU MODIFICA -->
-            <div class="row mt-3 pt-2 pb-2 d-none" style="border: 1px solid #0275d8;" id="updateDiv">
+            <div class="row mt-3 pt-2 pb-2 d-none" style="border: 1px solid #0275d8;" id="updateDiv<%= i + 1%>">
                 <div class="col-12">
                     <form action="/api/user/updateTransaction/<%- op[i]._id %>" method="POST" id="updateForm">
                         <div class="row">
@@ -119,9 +119,11 @@
 <% } %>
 
 <script>
-    function toggleCompleteForm() {
+    function toggleCompleteForm(i) {
+    
+        name = 'updateDiv' + i;
 
-        var updateForm = document.getElementById('updateDiv');
+        var updateForm = document.getElementById(name);
         if(updateForm.classList.contains('d-none')){
             updateForm.classList.remove('d-none');
         } else {
